@@ -148,9 +148,24 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        .light-page .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .light-page .nav-link,
+        .light-page .gradient-text {
+            color: var(--primary) !important;
+        }
+
+        .light-page .nav-link:hover {
+            color: var(--secondary) !important;
+        }
     </style>
 </head>
-<body class="text-gray-800">
+<body class="text-gray-800 light-page">
     <!-- Navigation -->
     <nav class="glass-nav fixed top-0 w-full z-50 px-6 py-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
@@ -239,7 +254,7 @@
             </div>
 
             <div class="bg-white p-8 md:p-12 rounded-2xl shadow-lg reveal">
-                <form id="contact-form" action="https://formspree.io/f/shreyas.deepak2006@gmail.com" method="POST" class="space-y-6">
+                <form id="contact-form" action="https://formspree.io/f/xovkgqqb" method="POST" class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>

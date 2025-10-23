@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initParticleBackground();
     initMobileMenu();
     initSmoothScrolling();
+    initCardHoverEffects();
+    initButtonAnimations();
 });
 
 // Typewriter Effect for Hero Text
@@ -20,6 +22,31 @@ function initTypewriter() {
         loop: true,
         showCursor: true,
         cursorChar: '|'
+    });
+}
+
+// Button Animations
+function initButtonAnimations() {
+    const buttons = document.querySelectorAll('a.bg-gradient-to-r, button[type="submit"]');
+
+    buttons.forEach(button => {
+        button.addEventListener('mouseover', () => {
+            anime({
+                targets: button,
+                scale: 1.05,
+                duration: 300,
+                easing: 'easeOutQuad'
+            });
+        });
+
+        button.addEventListener('mouseout', () => {
+            anime({
+                targets: button,
+                scale: 1,
+                duration: 300,
+                easing: 'easeOutQuad'
+            });
+        });
     });
 }
 

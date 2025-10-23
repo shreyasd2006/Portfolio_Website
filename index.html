@@ -110,6 +110,12 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        .profile-picture {
+            border-radius: 10%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
     </style>
 </head>
 <body class="text-gray-800">
@@ -141,7 +147,7 @@
         <div class="max-w-7xl mx-auto px-6 text-center text-white">
             <div class="reveal">
                 <div class="mb-8">
-                    <img src="me.jpg" alt="Shreyas D" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-white shadow-2xl">
+                    <img src="me.jpg" alt="Shreyas D" class="profile-picture w-32 h-32 mx-auto mb-6 border-4 border-white shadow-2xl">
                 </div>
                 <h1 class="text-5xl md:text-7xl font-bold mb-6" style="font-family: 'Playfair Display', serif;">
                     Hi, I'm <span class="gradient-text" id="typed-name"></span>

@@ -136,9 +136,24 @@
                 transform: translateY(0) scale(1);
             }
         }
+
+        .light-page .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .light-page .nav-link,
+        .light-page .gradient-text {
+            color: var(--primary) !important;
+        }
+
+        .light-page .nav-link:hover {
+            color: var(--secondary) !important;
+        }
     </style>
 </head>
-<body class="text-gray-800">
+<body class="text-gray-800 light-page">
     <!-- Navigation -->
     <nav class="glass-nav fixed top-0 w-full z-50 px-6 py-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
@@ -447,14 +462,14 @@
                 </div>
                 <div class="space-y-4">
                     <p class="text-lg text-gray-700">
-                        An innovative mobile application that provides AI-integrated indoor navigation for university campuses. The app also features a QR-code-based digital attendance system with real-time tracking capabilities.
+                        This project is an AI-enhanced mobile application designed to provide seamless indoor navigation across university campuses. It integrates a smart QR-based digital attendance system, complete with real-time tracking, to automate and simplify administrative tasks.
                     </p>
-                    <h3 class="text-xl font-semibold" style="color: var(--primary);">Features:</h3>
+                    <h3 class="text-xl font-semibold" style="color: var(--primary);">Core Features:</h3>
                     <ul class="list-disc list-inside space-y-2 text-gray-700">
-                        <li>AI-powered indoor navigation with shortest path finding.</li>
-                        <li>QR-based attendance system for seamless check-ins.</li>
-                        <li>Real-time location tracking of students and faculty.</li>
-                        <li>Interactive campus maps and points of interest.</li>
+                        <li>AI-driven indoor navigation with dynamic pathfinding.</li>
+                        <li>Automated attendance tracking using QR codes.</li>
+                        <li>Live location monitoring for students and staff.</li>
+                        <li>Detailed, interactive maps of campus buildings and facilities.</li>
                     </ul>
                 </div>
             </div>
@@ -470,7 +485,7 @@
                 </div>
                 <div class="space-y-4">
                     <p class="text-lg text-gray-700">
-                        A culturally adapted version of the popular NYT "Connections" puzzle game, localized for Kannada-speaking audiences. The game features word puzzles that are relevant to Kannada culture and language.
+                        "Kannada Connections" is a localized adaptation of the New York Times' "Connections" word puzzle, tailored for the Kannada-speaking community. This game challenges players with word puzzles that are deeply rooted in Kannada culture and language, offering a unique and engaging experience.
                     </p>
                 </div>
             </div>
@@ -486,7 +501,7 @@
                 </div>
                 <div class="space-y-4">
                     <p class="text-lg text-gray-700">
-                        A front-end web application for healthcare that allows users to check their symptoms interactively. The application features 3D visualizations of the human body, built with Three.js, to help users pinpoint their symptoms.
+                        This is an innovative front-end healthcare application that allows users to diagnose their symptoms through an interactive, 3D interface. Built with HTML, CSS, JavaScript, and Three.js, it provides a visually engaging way for users to identify their health issues by interacting with a 3D model of the human body.
                     </p>
                 </div>
             </div>
