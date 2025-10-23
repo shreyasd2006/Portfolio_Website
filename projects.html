@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Shreyas D</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #4a9b8e;
+            --accent: #f39c12;
+            --text: #2c3e50;
+            --bg: #ffffff;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .glass-nav {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(45deg, var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .filter-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn.active {
+            background: linear-gradient(45deg, var(--secondary), var(--accent));
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-card {
+            opacity: 1;
+            transform: scale(1);
+            transition: all 0.5s ease;
+        }
+        
+        .project-card.hidden {
+            opacity: 0;
+            transform: scale(0.8);
+            pointer-events: none;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.6s ease;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            margin: 20px;
+            animation: modalSlideIn 0.3s ease;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <!-- Navigation -->
+    <nav class="glass-nav fixed top-0 w-full z-50 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold text-white">
+                <a href="index.html" class="gradient-text">Shreyas D</a>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="nav-link text-white hover:text-yellow-300">Home</a>
+                <a href="about.html" class="nav-link text-white hover:text-yellow-300">About</a>
+                <a href="projects.html" class="nav-link text-white hover:text-yellow-300 active">Projects</a>
+                <a href="contact.html" class="nav-link text-white hover:text-yellow-300">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 bg-gradient-to-br from-teal-50 to-blue-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6" style="font-family: 'Playfair Display', serif; color: var(--primary);">
+                    My <span class="gradient-text">Projects</span>
+                </h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    Innovative solutions at the intersection of AI, software development, and research
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Filters -->
+    <section class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-wrap justify-center gap-4 mb-12 reveal">
+                <button class="filter-btn active px-6 py-3 rounded-full font-semibold border-2 border-gray-300" data-filter="all">
+                    All Projects
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full font-semibold border-2 border-gray-300" data-filter="ai-ml">
+                    AI/ML
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full font-semibold border-2 border-gray-300" data-filter="mobile">
+                    Mobile Dev
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full font-semibold border-2 border-gray-300" data-filter="web">
+                    Web Dev
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full font-semibold border-2 border-gray-300" data-filter="research">
+                    Research
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+                
+                <!-- MindLock App -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg" data-category="mobile">
+                    <div class="h-48 bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+                        <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3" style="color: var(--primary);">MindLock - Mindfulness App</h3>
+                        <p class="text-gray-600 mb-4">A Flutter-based mobile app that reduces unconscious phone usage through intent prompts and timed focus check-ins with analytics dashboard.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Flutter</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Mobile Dev</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">UX Design</span>
+                        </div>
+                        <button class="text-teal-600 hover:text-teal-800 font-semibold" onclick="openModal('mindlock')">Learn More →</button>
+                    </div>
+                </div>
+
+                <!-- AI Comorbidity Forecasting -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg" data-category="ai-ml research">
+                    <div class="h-48 bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
+                        <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3" style="color: var(--primary);">AI Comorbidity Forecasting</h3>
+                        <p class="text-gray-600 mb-4">Advanced Graph Neural Networks using PyTorch to predict multi-step disease progression for COPD patients using MIMIC-IV datasets.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm">PyTorch</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">GNN</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Healthcare</span>
+                        </div>
+                        <button class="text-teal-600 hover:text-teal-800 font-semibold" onclick="openModal('comorbidity')">Learn More →</button>
+                    </div>
+                </div>
+
+                <!-- Air Quality Forecasting -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg" data-category="ai-ml research">
+                    <div class="h-48 bg-gradient-to-br from-green-500 to-teal-500 flex items-center justify-center">
+                        <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3" style="color: var(--primary);">Air Quality Forecasting</h3>
+                        <p class="text-gray-600 mb-4">Machine learning models to forecast urban air quality using 5 years of pollution and weather data from Hyderabad, Vijayawada, and Visakhapatnam.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm">Research</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">ML Models</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Publication</span>
+                        </div>
+                        <button class="text-teal-600 hover:text-teal-800 font-semibold" onclick="openModal('airquality')">Learn More →</button>
+                    </div>
+                </div>
+
+                <!-- Campus Navigation System -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg" data-category="mobile ai-ml">
+                    <div class="h-48 bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center">
+                        <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3" style="color: var(--primary);">AI Campus Navigation</h3>
+                        <p class="text-gray-600 mb-4">AI-integrated mobile app for campus indoor navigation and QR-based digital attendance automation system with real-time tracking.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">AI Integration</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Navigation</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">Mobile</span>
+                        </div>
+                        <button class="text-teal-600 hover:text-teal-800 font-semibold" onclick="openModal('campusnav')">Learn More →</button>
+                    </div>
+                </div>
+
+                <!-- Kannada Connections Game -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg" data-category="mobile web">
+                    <div class="h-48 bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center">
+                        <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3" style="color: var(--primary);">Kannada Connections</h3>
+                        <p class="text-gray-600 mb-4">A Kannada-language adaptation of the NYT "Connections" puzzle game with cultural and linguistic localization for native audiences.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm">Game Dev</span>
+                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">Localization</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Cultural</span>
+                        </div>
+                        <button class="text-teal-600 hover:text-teal-800 font-semibold" onclick="openModal('kannada')">Learn More →</button>
+                    </div>
+                </div>
+
+                <!-- Symptom Checker Website -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg" data-category="web">
+                    <div class="h-48 bg-gradient-to-br from-teal-500 to-blue-500 flex items-center justify-center">
+                        <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3" style="color: var(--primary);">Interactive Symptom Checker</h3>
+                        <p class="text-gray-600 mb-4">Healthcare front-end application using HTML, CSS, JavaScript, and Three.js for interactive symptom-based diagnosis with 3D visualizations.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-teal-100 text-teal-800 rounded-full text-sm">Three.js</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Healthcare</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">3D UI</span>
+                        </div>
+                        <button class="text-teal-600 hover:text-teal-800 font-semibold" onclick="openModal('symptom')">Learn More →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-gradient-to-r from-teal-600 to-blue-700">
+        <div class="max-w-4xl mx-auto px-6 text-center text-white">
+            <div class="reveal">
+                <h2 class="text-4xl font-bold mb-6" style="font-family: 'Playfair Display', serif;">
+                    Like What You See?
+                </h2>
+                <p class="text-xl mb-8 opacity-90">
+                    I'm always excited to work on new challenges and collaborate with like-minded individuals.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="contact.html" class="bg-white text-teal-600 hover:bg-gray-100 px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105">
+                        Let's Collaborate
+                    </a>
+                    <a href="about.html" class="border-2 border-white text-white hover:bg-white hover:text-teal-600 px-8 py-4 rounded-full font-semibold transition-all duration-300">
+                        Learn More About Me
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-gray-400">
+                © 2025 Shreyas D. Built with passion for innovation and excellence.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Project Modals -->
+    <div id="mindlock-modal" class="modal">
+        <div class="modal-content">
+            <div class="p-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-bold" style="color: var(--primary);">MindLock - Mindfulness App</h2>
+                    <button onclick="closeModal('mindlock')" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-lg text-gray-700">
+                        MindLock is a comprehensive mindfulness-based productivity application designed to combat unconscious phone usage through intelligent intent prompts and behavioral awareness tracking.
+                    </p>
+                    <h3 class="text-xl font-semibold" style="color: var(--primary);">Key Features:</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Flutter-based cross-platform mobile application</li>
+                        <li>Intent-based usage prompts to increase awareness</li>
+                        <li>Timed focus check-ins with customizable intervals</li>
+                        <li>Comprehensive analytics dashboard for usage patterns</li>
+                        <li>Behavior tracking and progress visualization</li>
+                        <li>Mindfulness exercises and guided sessions</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold" style="color: var(--primary);">Technologies:</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Flutter</span>
+                        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Dart</span>
+                        <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">Firebase</span>
+                        <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm">SQLite</span>
+                    </div>
+                    <div class="flex gap-4 mt-6">
+                        <a href="#" class="bg-teal-600 text-white px-6 py-3 rounded-lg hover:bg-teal-700 transition-colors">View Code</a>
+                        <a href="#" class="border-2 border-teal-600 text-teal-600 px-6 py-3 rounded-lg hover:bg-teal-600 hover:text-white transition-colors">Live Demo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="comorbidity-modal" class="modal">
+        <div class="modal-content">
+            <div class="p-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-bold" style="color: var(--primary);">AI Comorbidity Forecasting</h2>
+                    <button onclick="closeModal('comorbidity')" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-lg text-gray-700">
+                        An advanced research project utilizing Graph Neural Networks to predict multi-step disease progression patterns in COPD patients, leveraging the comprehensive MIMIC-IV dataset.
+                    </p>
+                    <h3 class="text-xl font-semibold" style="color: var(--primary);">Research Objectives:</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Develop temporal GNN models for disease trajectory prediction</li>
+                        <li>Analyze comorbidity patterns in COPD patients</li>
+                        <li>Implement multi-step forecasting algorithms</li>
+                        <li>Validate models using MIMIC-IV clinical data</li>
+                        <li>Generate interpretable results for clinical decision support</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold" style="color: var(--primary);">Methodology:</h3>
+                    <p class="text-gray-700">Utilizing PyTorch framework with specialized GNN architectures including GAT, GCN, and temporal attention mechanisms for sequential prediction tasks.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm">PyTorch</span>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">GNN</span>
+                        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Healthcare</span>
+                        <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">Research</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional modals would go here for other projects -->
+
+    <script>
+        // Project filtering functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    const filter = button.getAttribute('data-filter');
+                    
+                    // Filter projects
+                    projectCards.forEach(card => {
+                        const categories = card.getAttribute('data-category');
+                        
+                        if (filter === 'all' || categories.includes(filter)) {
+                            card.classList.remove('hidden');
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+            
+            // Scroll animations
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            revealElements.forEach(element => {
+                revealObserver.observe(element);
+            });
+        });
+        
+        // Modal functionality
+        function openModal(projectId) {
+            const modal = document.getElementById(projectId + '-modal');
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        function closeModal(projectId) {
+            const modal = document.getElementById(projectId + '-modal');
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+        
+        // Close modal on background click
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                e.target.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+    <script src="main.js"></script>
+</body>
+</html>
