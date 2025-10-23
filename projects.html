@@ -372,10 +372,6 @@
                         <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">Firebase</span>
                         <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm">SQLite</span>
                     </div>
-                    <div class="flex gap-4 mt-6">
-                        <a href="#" class="bg-teal-600 text-white px-6 py-3 rounded-lg hover:bg-teal-700 transition-colors">View Code</a>
-                        <a href="#" class="border-2 border-teal-600 text-teal-600 px-6 py-3 rounded-lg hover:bg-teal-600 hover:text-white transition-colors">Live Demo</a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -413,7 +409,89 @@
         </div>
     </div>
 
-    <!-- Additional modals would go here for other projects -->
+    <div id="airquality-modal" class="modal">
+        <div class="modal-content">
+            <div class="p-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-bold" style="color: var(--primary);">Air Quality Forecasting</h2>
+                    <button onclick="closeModal('airquality')" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-lg text-gray-700">
+                        This project focuses on developing and evaluating machine learning models to forecast urban air quality. The study uses a comprehensive dataset spanning five years of pollution and weather data from three major cities: Hyderabad, Vijayawada, and Visakhapatnam.
+                    </p>
+                    <h3 class="text-xl font-semibold" style="color: var(--primary);">Key Objectives:</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Analyze long-term air quality trends and their correlation with meteorological factors.</li>
+                        <li>Develop and compare various time-series forecasting models (e.g., ARIMA, LSTM).</li>
+                        <li>Evaluate model performance based on accuracy and computational efficiency.</li>
+                        <li>Provide insights for environmental policy and public health advisories.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold" style="color: var(--primary);">Technologies:</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm">Research</span>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">ML Models</span>
+                        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Publication</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="campusnav-modal" class="modal">
+        <div class="modal-content">
+            <div class="p-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-bold" style="color: var(--primary);">AI Campus Navigation</h2>
+                    <button onclick="closeModal('campusnav')" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-lg text-gray-700">
+                        An innovative mobile application that provides AI-integrated indoor navigation for university campuses. The app also features a QR-code-based digital attendance system with real-time tracking capabilities.
+                    </p>
+                    <h3 class="text-xl font-semibold" style="color: var(--primary);">Features:</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>AI-powered indoor navigation with shortest path finding.</li>
+                        <li>QR-based attendance system for seamless check-ins.</li>
+                        <li>Real-time location tracking of students and faculty.</li>
+                        <li>Interactive campus maps and points of interest.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="kannada-modal" class="modal">
+        <div class="modal-content">
+            <div class="p-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-bold" style="color: var(--primary);">Kannada Connections</h2>
+                    <button onclick="closeModal('kannada')" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-lg text-gray-700">
+                        A culturally adapted version of the popular NYT "Connections" puzzle game, localized for Kannada-speaking audiences. The game features word puzzles that are relevant to Kannada culture and language.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="symptom-modal" class="modal">
+        <div class="modal-content">
+            <div class="p-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-bold" style="color: var(--primary);">Interactive Symptom Checker</h2>
+                    <button onclick="closeModal('symptom')" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-lg text-gray-700">
+                        A front-end web application for healthcare that allows users to check their symptoms interactively. The application features 3D visualizations of the human body, built with Three.js, to help users pinpoint their symptoms.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Project filtering functionality

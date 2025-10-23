@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shreyas D - Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
     <script src="https://unpkg.com/splitting@1.0.6/dist/splitting.js"></script>
@@ -12,21 +13,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #1a1a2e;
+            --primary: #1a2a45;
             --secondary: #4a9b8e;
-            --accent: #f39c12;
-            --text: #2c3e50;
-            --bg: #ffffff;
+            --accent: #f3d250;
+            --text: #333333;
+            --bg: #f8f9fa;
         }
         
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-color: var(--bg);
+            color: var(--text);
             min-height: 100vh;
         }
         
         .hero-bg {
-            background: linear-gradient(rgba(26, 26, 46, 0.7), rgba(74, 155, 142, 0.7)), url('resources/hero-bg.jpg');
+            background: linear-gradient(rgba(26, 42, 69, 0.8), rgba(74, 155, 142, 0.8)), url('hero-bg.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -46,12 +48,12 @@
         }
         
         .card-hover {
-            transition: all 0.3s ease;
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         
         .card-hover:hover {
-            transform: translateY(-10px) rotateX(5deg);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
         
         .skill-bar {
@@ -79,18 +81,19 @@
         
         .nav-link {
             position: relative;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
         }
         
         .nav-link::after {
             content: '';
             position: absolute;
             bottom: -5px;
-            left: 0;
+            left: 50%;
+            transform: translateX(-50%);
             width: 0;
             height: 2px;
             background: var(--accent);
-            transition: width 0.3s ease;
+            transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         
         .nav-link:hover::after {
@@ -99,13 +102,13 @@
         
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
-            transition: all 0.6s ease;
         }
     </style>
 </head>
@@ -138,7 +141,7 @@
         <div class="max-w-7xl mx-auto px-6 text-center text-white">
             <div class="reveal">
                 <div class="mb-8">
-                    <img src="resources/profile-placeholder.jpg" alt="Shreyas D" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-white shadow-2xl">
+                    <img src="me.jpg" alt="Shreyas D" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-white shadow-2xl">
                 </div>
                 <h1 class="text-5xl md:text-7xl font-bold mb-6" style="font-family: 'Playfair Display', serif;">
                     Hi, I'm <span class="gradient-text" id="typed-name"></span>

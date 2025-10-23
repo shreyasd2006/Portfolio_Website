@@ -239,7 +239,7 @@
             </div>
 
             <div class="bg-white p-8 md:p-12 rounded-2xl shadow-lg reveal">
-                <form id="contact-form" class="space-y-6">
+                <form id="contact-form" action="https://formspree.io/f/shreyas.deepak2006@gmail.com" method="POST" class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>
@@ -413,8 +413,6 @@
             
             // Form submission
             form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                
                 let isValid = true;
                 inputs.forEach(input => {
                     if (!validateField(input)) {
@@ -422,8 +420,8 @@
                     }
                 });
                 
-                if (isValid) {
-                    submitForm();
+                if (!isValid) {
+                    e.preventDefault();
                 }
             });
             
@@ -487,39 +485,6 @@
                 field.classList.remove('error', 'success');
                 const errorDiv = field.parentNode.querySelector('.error-message');
                 errorDiv.classList.add('hidden');
-            }
-            
-            function submitForm() {
-                const submitBtn = form.querySelector('button[type="submit"]');
-                const originalText = submitBtn.textContent;
-                
-                // Show loading state
-                submitBtn.textContent = 'Sending...';
-                submitBtn.classList.add('loading');
-                
-                // Simulate form submission (replace with actual endpoint)
-                setTimeout(() => {
-                    // Reset button
-                    submitBtn.textContent = originalText;
-                    submitBtn.classList.remove('loading');
-                    
-                    // Show success message
-                    document.getElementById('success-message').classList.add('active');
-                    
-                    // Reset form
-                    form.reset();
-                    
-                    // Remove success states
-                    inputs.forEach(input => {
-                        input.classList.remove('success');
-                    });
-                    
-                    // Hide success message after 5 seconds
-                    setTimeout(() => {
-                        document.getElementById('success-message').classList.remove('active');
-                    }, 5000);
-                    
-                }, 2000);
             }
             
             // Scroll animations
